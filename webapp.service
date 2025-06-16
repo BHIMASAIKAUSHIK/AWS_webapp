@@ -1,0 +1,26 @@
+[Unit]
+Description=CSYE6225 Node.js Web Application with MySQL
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=csye6225
+Group=csye6225
+WorkingDirectory=/opt/csye6225/webapp
+ExecStart=/usr/bin/node /opt/csye6225/webapp/index.js
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=webapp
+Environment=NODE_ENV=production
+Environment=DB_USER=root
+Environment=DB_PASSWORD=Kaushik07.
+Environment=DB_NAME=FakeDatabase
+Environment=DB_HOST=localhost
+Environment=DB_DIALECT=mysql
+# Add this line to make sure Node can find any required modules
+Environment=NODE_PATH=/opt/csye6225/webapp/node_modules
+
+[Install]
+WantedBy=multi-user.target
